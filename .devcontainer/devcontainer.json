@@ -1,0 +1,7 @@
+{
+	"name": "Django Sample",
+	"dockerFile": "Dockerfile",
+	"extensions": [
+		"ms-python.python"
+	]
+}
