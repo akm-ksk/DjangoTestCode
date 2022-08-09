@@ -16,6 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from django.urls import include
+
+from snippets.views import top
+
 urlpatterns = [
+    path('', top, name='top'),  # リクエストPATH, ビュー関数, キーワード(逆引き用)
+    path('snippets/', include('snippets.urls')),  # snippets.urls.py 読み込み
     path('admin/', admin.site.urls),
 ]

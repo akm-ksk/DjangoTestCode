@@ -31,12 +31,13 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
+    'django.contrib.admin',  # 管理画面
+    'django.contrib.auth',  # 認証
     'django.contrib.contenttypes',
-    'django.contrib.sessions',
+    'django.contrib.sessions',  # セッション管理
     'django.contrib.messages',
-    'django.contrib.staticfiles',
+    'django.contrib.staticfiles',  # 静的ファイル関連
+    'snippets.apps.SnippetsConfig',  # スニペットアプリの追加
 ]
 
 MIDDLEWARE = [
