@@ -2,7 +2,7 @@ from django.http import HttpRequest
 from django.test import TestCase
 from django.urls import resolve
 
-from snippets.views import top, snippet_new, snippet_detail, snippet_edit
+from snippets.views import snippet_new, snippet_detail, snippet_edit
 
 
 # Create your tests here.
@@ -26,19 +26,19 @@ class EditSnippetsTest(TestCase):
 
 class TopPageViewTest(TestCase):
     def CreateSnippetsTest(self):
-        request = HttpRequest()
+        # request = HttpRequest()
         # response = top(request)
         response = self.client.get('/')
         self.assertEqual(response.content, b'Hello World')
 
     def test_top_return_200(self):
-        request = HttpRequest()  # リクエストのオブジェクトを生成
+        # request = HttpRequest()  # リクエストのオブジェクトを生成
         # response = top(request)
         response = self.client.get('/')
         self.assertEqual(response.status_code, 200)
 
     def test_top_returns_expected_content(self):
-        request = HttpRequest()
+        # request = HttpRequest()
         # response = top(request)
         response = self.client.get('/')
         self.assertEqual(response.content, b'Hello World')
