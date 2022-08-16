@@ -1,5 +1,6 @@
 from django.http import HttpResponse, HttpResponseForbidden
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.http import require_safe, require_http_methods
 
 # Create your views here.
 from django.shortcuts import render, get_object_or_404, redirect
@@ -8,6 +9,7 @@ from snippets.forms import SnippetForm
 from snippets.models import Snippet
 
 
+@require_safe
 def top(request):
     snippets = Snippet.objects.all()
     context = {'snippets': snippets}
@@ -17,6 +19,7 @@ def top(request):
 # def snippet_new(request):
 #     return HttpResponse('スニペットの登録')
 @login_required
+@require_http_methods(['GET', 'POST', 'HEAD'])
 def snippet_new(request):
     if request.method == 'POST':
         form = SnippetForm(request.POST)

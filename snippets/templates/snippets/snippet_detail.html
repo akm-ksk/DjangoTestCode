@@ -1,15 +1,25 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <title>Djangoスニペット</title>
-</head>
-<body>
-  <div>
-    <h2>{{ snippet.title }} by {{ snippet.create_by.username }}</h2>
-    <small>投稿日 : {{ snippet.created_at }}</small>
-    <pre>{{ snippet.code }}</pre>
-    <p>{{ snippet.description }}</p>
+{% extends 'base.html' %}
+{% load pygmentize %}
+
+{% block extraheader %}
+  <style>{% pygments_css %}</style>
+{% endblock %}
+
+{% block main %}
+
+  <h2>{{ snippet.title }} by {{ snippet.create_by.username }}</h2>
+
+  <div class="snippet-date">
+    <small>投稿日 : {{ snippet.create_at | date:"DATETIME_FORMAT" }}</small>
+    {% if user.is_authenticated and snippet.create_by_id  == user.id %}
+      <a href="{% url 'snippet_edit' snippet.id %}">編集</a>
+    {% endif %}
   </div>
-</body>
-</html>
+
+  <div class="source_code">
+    {{ snippet.code | pygmentize:"python3" }}
+  </div>
+
+  <p>{{ snippet.description }}</p>
+
+{% endblock %}

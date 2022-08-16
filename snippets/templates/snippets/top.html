@@ -1,14 +1,20 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <title>Djangoスニペット</title>
-</head>
-<body>
-  <h1>ようこそDjangoスニペットへ</h1>
+{% extends 'base.html' %}
+
+{% block main %}
+
+  <div class="welcome">
+    <h1 class="title">ようこそDjangoスニペットへ</h1>
+    <p class="subtitle">あなたの知見を共有しましょう</p>
+    <a href="{% url 'snippet_new' %}" class="btn btn-primary">
+      スニッペトを制作する
+    </a>
+  </div>
+
   <h2>スニペット一覧</h2>
+
   {% if snippets %}
     <table class="table">
+
       <thead>
       <tr>
         <th>投稿者</th>
@@ -16,22 +22,23 @@
         <th>タイトル</th>
       </tr>
       </thead>
+
       <tbody>
       {% for snippet in snippets %}
         <tr>
           <th>{{ snippet.create_by.username }}</th>
           <th>{{ snippet.create_at }}</th>
-          <th>
-            <a href="{% url 'snippet_detail' snippet.id %}">
-              {{ snippet.title }}
-            </a>
-          </th>
+          <th><a href="{% url 'snippet_detail' snippet.id %}">{{ snippet.title }}</a></th>
         </tr>
       {% endfor %}
       </tbody>
+
     </table>
+
   {% else %}
+
     <p>スニペットとがありません</p>
+
   {% endif %}
-</body>
-</html>
+  
+{% endblock %}
