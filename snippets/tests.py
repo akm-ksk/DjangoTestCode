@@ -71,11 +71,11 @@ class TopPageRenderSnippetsTest(TestCase):
 #         found = resolve('/snippets/new/')
 #         self.assertEqual(snippet_new, found.func)
 class CreateSnippetsTest(TestCase):
-    def serUp(self):
+    def setUp(self):
         self.user = UserModel.objects.create(
-            username='test_user',
-            email='test@example.com',
-            password='top_secret_pass0001',
+            username="test_user",
+            email="test@example.com",
+            password="secret",
         )
         self.client.force_login(self.user)  # ログインする
 
